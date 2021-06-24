@@ -1,3 +1,4 @@
+// import { useHistory } from 'react-router-dom';
 import { useEffect, useState, createContext, ReactNode } from "react";
 import { auth, firebase } from "../services/firebase";
 
@@ -44,6 +45,26 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         }
     }, [])
 
+    // function signInWithGithub() {
+    //     const provider = new firebase.auth.GithubAuthProvider();
+
+    //     const result = await auth.signInWithPopup(provider)
+
+    //     if (result.user) {
+    //         const { displayName, photoURL, uid } = result.user
+
+    //         if (!displayName || !photoURL) {
+    //             throw new Error('Missing information from Github Account.')
+    //         }
+
+    //         setUser({
+    //             id: uid,
+    //             name: displayName,
+    //             avatar: photoURL
+    //         })
+    //     }
+    // }
+
     async function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -63,6 +84,14 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             })
         }
     }
+
+    // async function signOut() {
+    //     const history = useHistory();
+
+    //     await auth.signOut();
+    //     setUser(undefined);
+    //     history.push('/')
+    // }
 
     return (
         <AuthContext.Provider value={{ user, signInWithGoogle }}>

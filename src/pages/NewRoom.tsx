@@ -7,6 +7,7 @@ import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
+import { notify } from '../utils/notify'
 
 import '../styles/auth.scss'
 
@@ -29,6 +30,7 @@ export function NewRoom() {
             authorId: user?.id,
         })
 
+        notify('success', 'successfully created room!')
         history.push(`/rooms/${firebaseRoom.key}`)
     }
 
