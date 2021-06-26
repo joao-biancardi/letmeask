@@ -8,20 +8,24 @@ import { AdminRoom } from "./pages/AdminRoom";
 import { Toaster } from "react-hot-toast";
 
 import { AuthContextProvider } from './contexts/AuthContext';
+import { ThemeContextProvider } from "./contexts/ThemeContext";
 
 function App() {
     return (
         <BrowserRouter>
-            <AuthContextProvider>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/rooms/new" component={NewRoom} />
-                    <Route path="/rooms/:id" component={Room} />
-                    <Route path="/admin/rooms/:id" component={AdminRoom} />
-                </Switch>
-            </AuthContextProvider>
-            <Toaster
-			/>
+            <ThemeContextProvider>
+                <AuthContextProvider>
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/rooms/new" component={NewRoom} />
+                        <Route path="/rooms/:id" component={Room} />
+                        <Route path="/admin/rooms/:id" component={AdminRoom} />
+                    </Switch>
+                </AuthContextProvider>
+            </ThemeContextProvider>
+            <Toaster    
+                position='top-center'
+            />
         </BrowserRouter>
     );
 }

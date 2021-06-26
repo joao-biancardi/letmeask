@@ -1,22 +1,25 @@
 import { useHistory } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
-import googleIconImg from '../assets/images/google-icon.svg';
-// import githubIconImg from '../assets/images/github.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
+import googleIconImg from '../../assets/images/google-icon.svg';
+import githubIconImg from '../../assets/images/github.svg';
 
-import { Button } from '../components/Button';
-import { useAuth } from '../hooks/useAuth';
-import { notify } from '../utils/notify'
+import { Button } from '../../components/Button';
+import { useAuth } from '../../hooks/useAuth';
+import { notify } from '../../utils/notify'
 
-import '../styles/auth.scss';
+import { useTheme } from '../../hooks/useTheme';
+
+import './styles.scss';
 
 export function Home() {
     const history = useHistory();
     const { user, signInWithGoogle } = useAuth();
+    const { theme, toggleTheme } = useTheme();
     // const { user, signInWithGithub } = useAuth();
     const [roomCode, setRoomCode] = useState('');
 
@@ -54,12 +57,17 @@ export function Home() {
             return;
         }
 
-        notify('success', 'entered successfully')
+        notify('success', 'entered successfully!')
         history.push(`rooms/${roomCode}`)
     }
 
+    function signInGithub() {
+        notify('error', 'authentication with github is currently disabled.')
+        return;
+    }
+
     return (
-        <div id="page-auth">
+        <div id="page-auth" className={theme}>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
                 <strong>Crie salas de Q&amp;A ao-vivo</strong>
@@ -68,15 +76,16 @@ export function Home() {
 
             <main>
                 <div className="main-content">
+                    <button className="toggle-theme" onClick={toggleTheme}>Dark</button>
                     <img src={logoImg} alt="Letmeask" />
                     <button onClick={handleCreateRoom} className="create-room">
                         <img src={googleIconImg} alt="Logo do Google" />
                         Crie sua sala com o Google
                     </button>
-                    {/* <button onClick={handleCreateRoom} className="create-room" id="github">
+                    <button onClick={signInGithub} className="create-room" id="github">
                         <img src={githubIconImg} alt="Logo do Github" />
                         Crie sua sala com o Github
-                    </button> */}
+                    </button>
                     <div className="separator">ou entre em uma sala</div>
                     <form onSubmit={handleJoinRoom}>
                         <input

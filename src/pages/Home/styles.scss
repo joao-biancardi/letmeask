@@ -3,6 +3,28 @@
     align-items: stretch;
     height: 100vh;
 
+    &.dark {
+        background: #555;
+
+        aside {
+            background-color: #555;
+        }
+
+        .separator {
+            color: #fff;
+        }
+
+        .main-content {
+            h2 {
+                color: #fff;
+            }
+
+            p {
+                color: #fff;
+            }   
+        }
+    }
+
     aside {
         flex: 7;
         background: #835afd;
@@ -28,6 +50,8 @@
             margin-top: 16px;
             color: #f8f8f8;
         }
+
+        
     }
 
     main {
@@ -36,6 +60,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        
     }
 
     .main-content {
@@ -107,6 +132,7 @@
             filter: brightness(0.9);
         }
     }
+    
 
     #github {
         background-color: grayscale($color: #669900);

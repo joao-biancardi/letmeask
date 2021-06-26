@@ -1,6 +1,8 @@
 // import { useHistory } from 'react-router-dom';
 import { useEffect, useState, createContext, ReactNode } from "react";
+import { useHistory } from "react-router-dom";
 import { auth, firebase } from "../services/firebase";
+import { notify } from "../utils/notify";
 
 type User = {
     id: string;
@@ -11,6 +13,7 @@ type User = {
 type AuthContextType = {
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
+    signOut: () => Promise<void>;
 }
 
 type AuthContextProviderProps = {
@@ -36,7 +39,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
                     id: uid,
                     name: displayName,
                     avatar: photoURL
-                })
+                });
             }
         })
 
@@ -44,6 +47,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             unsubscribe();
         }
     }, [])
+
 
     // function signInWithGithub() {
     //     const provider = new firebase.auth.GithubAuthProvider();
@@ -85,16 +89,14 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         }
     }
 
-    // async function signOut() {
-    //     const history = useHistory();
+    async function signOut() {
+        await auth.signOut()
 
-    //     await auth.signOut();
-    //     setUser(undefined);
-    //     history.push('/')
-    // }
+        setUser(undefined)
+    }
 
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle }}>
+        <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
             {props.children}
         </AuthContext.Provider>
     );

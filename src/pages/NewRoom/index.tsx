@@ -1,19 +1,21 @@
 import { FormEvent, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
 
-import { Button } from '../components/Button';
-import { useAuth } from '../hooks/useAuth';
-import { database } from '../services/firebase';
-import { notify } from '../utils/notify'
+import { Button } from '../../components/Button';
+import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../hooks/useTheme';
+import { database } from '../../services/firebase';
+import { notify } from '../../utils/notify'
 
-import '../styles/auth.scss'
+import '../Home/styles.scss';
 
 export function NewRoom() {
     const { user } = useAuth();
     const history = useHistory();
+    const { theme, toggleTheme } = useTheme();
     const [newRoom, setNewRoom] = useState('')
 
     async function handleCreateRoom(event: FormEvent) {
@@ -35,7 +37,7 @@ export function NewRoom() {
     }
 
     return (
-        <div id="page-auth">
+        <div id="page-auth" className={theme}>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
                 <strong>Crie salas de Q&amp;A ao-vivo</strong>
@@ -59,7 +61,7 @@ export function NewRoom() {
                         </Button>
                     </form>
                     <p>
-                        Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>
+                        Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
                     </p>
                 </div>
             </main>
