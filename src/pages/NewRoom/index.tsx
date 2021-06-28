@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
+import logoWhite from '../../assets/images/logoWhite.svg';
 
 import { Button } from '../../components/Button';
 import { useAuth } from '../../hooks/useAuth';
@@ -15,7 +16,7 @@ import '../Home/styles.scss';
 export function NewRoom() {
     const { user } = useAuth();
     const history = useHistory();
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const [newRoom, setNewRoom] = useState('')
 
     async function handleCreateRoom(event: FormEvent) {
@@ -46,7 +47,11 @@ export function NewRoom() {
 
             <main>
                 <div className="main-content">
-                    <img src={logoImg} alt="Letmeask" />
+                    {theme === 'light' ? (
+                        <img src={logoImg} alt="Letmeask" />
+                    ) : (
+                        <img src={logoWhite} alt="Letmeask" />
+                    )}
                     <h2>Criar uma nova sala</h2>
                     <div className="separator">ou entre em uma sala</div>
                     <form onSubmit={handleCreateRoom}>

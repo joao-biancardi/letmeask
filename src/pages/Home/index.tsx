@@ -5,6 +5,7 @@ import { database } from '../../services/firebase';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
+import logoWhite from '../../assets/images/logoWhite.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
 import githubIconImg from '../../assets/images/github.svg';
 
@@ -20,7 +21,7 @@ export function Home() {
     const history = useHistory();
     const { user, signInWithGoogle } = useAuth();
     const { theme, toggleTheme } = useTheme();
-    // const { user, signInWithGithub } = useAuth();
+    const { signInWithGithub } = useAuth();
     const [roomCode, setRoomCode] = useState('');
 
     // async function handleCreateRoomGithub() {
@@ -61,9 +62,10 @@ export function Home() {
         history.push(`rooms/${roomCode}`)
     }
 
-    function signInGithub() {
+    async function signInGithub() {
         notify('error', 'authentication with github is currently disabled.')
-        return;
+        return
+        // signInWithGithub();
     }
 
     return (
@@ -75,9 +77,13 @@ export function Home() {
             </aside>
 
             <main>
+                <button className="toggle-theme" onClick={toggleTheme}>{theme === 'light' ? 'DarkTheme' : 'LightTheme'}</button>
                 <div className="main-content">
-                    <button className="toggle-theme" onClick={toggleTheme}>Dark</button>
-                    <img src={logoImg} alt="Letmeask" />
+                    {theme === 'light' ? (
+                        <img src={logoImg} alt="Letmeask" />
+                    ) : (
+                        <img src={logoWhite} alt="Letmeask" />
+                    )}
                     <button onClick={handleCreateRoom} className="create-room">
                         <img src={googleIconImg} alt="Logo do Google" />
                         Crie sua sala com o Google

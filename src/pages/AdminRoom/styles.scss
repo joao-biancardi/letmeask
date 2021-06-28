@@ -1,12 +1,6 @@
 #page-room {
-    height: 100vh;
-
     &.dark {
-        background: #555;
-        
-        header {
-            border-bottom: 1px solid #fff;
-        }
+        background: #333;
 
         main {
             .room-title {

@@ -2,7 +2,6 @@
 import { useEffect, useState, createContext, ReactNode } from "react";
 import { useHistory } from "react-router-dom";
 import { auth, firebase } from "../services/firebase";
-import { notify } from "../utils/notify";
 
 type User = {
     id: string;
@@ -13,6 +12,7 @@ type User = {
 type AuthContextType = {
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
+    signInWithGithub: () => Promise<void>;
     signOut: () => Promise<void>;
 }
 
@@ -49,25 +49,18 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     }, [])
 
 
-    // function signInWithGithub() {
-    //     const provider = new firebase.auth.GithubAuthProvider();
+    async function signInWithGithub() {
+        const provider = new firebase.auth.GithubAuthProvider();
 
-    //     const result = await auth.signInWithPopup(provider)
-
-    //     if (result.user) {
-    //         const { displayName, photoURL, uid } = result.user
-
-    //         if (!displayName || !photoURL) {
-    //             throw new Error('Missing information from Github Account.')
-    //         }
-
-    //         setUser({
-    //             id: uid,
-    //             name: displayName,
-    //             avatar: photoURL
-    //         })
-    //     }
-    // }
+        const result = await auth.signInWithPopup(provider);
+        
+        if (result.credential) {
+            var token = result.credential.providerId;
+            console.log(token)
+        }   
+        var user = result.user;
+        console.log(user)
+    }
 
     async function signInWithGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -96,7 +89,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
+        <AuthContext.Provider value={{ user, signInWithGoogle, signInWithGithub, signOut }}>
             {props.children}
         </AuthContext.Provider>
     );

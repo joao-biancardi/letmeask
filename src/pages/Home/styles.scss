@@ -4,10 +4,10 @@
     height: 100vh;
 
     &.dark {
-        background: #555;
+        background: #333;
 
         aside {
-            background-color: #555;
+            background-color: #333;
         }
 
         .separator {
@@ -60,6 +60,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        .toggle-theme {
+            width: 125px;
+            max-width: 320px;
+            height: 40px;
+            border: 0;
+            border-radius: 8px;
+            color: #fff;
+            background-color: #999;
+            position: absolute;
+            top: 5px;
+            font-weight: 500;
+            cursor: pointer;
+        }
         
     }
 

@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 import { notify } from '../utils/notify';
 
 type Theme = 'light' | 'dark';
@@ -27,12 +28,22 @@ export function ThemeContextProvider(props: ThemeContextProviderProps) {
 
     function toggleTheme() {
         setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
-        // if(currentTheme === 'dark') {
-        //     notify('success', 'dark');
-        //     return
-        // } else {
-        //     notify('success', 'light')
-        // }
+        console.log(currentTheme)
+        if (currentTheme === 'light') {
+            toast('Hello Darkness!',
+                {
+                    icon: '👏',
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                }
+            );
+            return
+        } else {
+            notify('success', 'LightTheme')
+        }
     }
 
     return (

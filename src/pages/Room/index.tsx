@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import emptyImg from '../../assets/images/empty-questions.svg';
 import logoImg from '../../assets/images/logo.svg';
+import logoWhite from '../../assets/images/logoWhite.svg';
+
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { useAuth } from '../../hooks/useAuth';
@@ -81,7 +83,11 @@ export function Room() {
         <div id="page-room" className={theme}>
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
+                    {theme === 'light' ? (
+                        <img src={logoImg} alt="Letmeask" />
+                    ) : (
+                        <img src={logoWhite} alt="Letmeask" />
+                    )}
                     <RoomCode code={roomId} />
                     {/* <Button onClick={handleLogOut}>Logout</Button> */}
                 </div>

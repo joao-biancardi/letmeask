@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 import emptyImg from '../../assets/images/empty-questions.svg';
 import logoImg from '../../assets/images/logo.svg';
+import logoWhite from '../../assets/images/logoWhite.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
@@ -72,7 +73,11 @@ export function AdminRoom() {
         <div id="page-room" className={theme}>
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
+                    {theme === 'light' ? (
+                        <img src={logoImg} alt="Letmeask" />
+                    ) : (
+                        <img src={logoWhite} alt="Letmeask" />
+                    )}
                     <div>
                         <RoomCode code={roomId} />
                         <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
@@ -84,14 +89,14 @@ export function AdminRoom() {
                 <div className="room-title">
                     <h1>Sala {title}</h1>
                     {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
-                </div> 
+                </div>
 
                 {questions.length === 0 && (
-                            <div className="empty-questions">
-                                <img src={emptyImg} alt="nenhuma pergunta"/>
-                                <h3>Nenhuma pergunta por aqui...</h3>
-                                <span>Envie o código desta sala para seus amigos e comece a responder perguntas!</span>
-                            </div>
+                    <div className="empty-questions">
+                        <img src={emptyImg} alt="nenhuma pergunta" />
+                        <h3>Nenhuma pergunta por aqui...</h3>
+                        <span>Envie o código desta sala para seus amigos e comece a responder perguntas!</span>
+                    </div>
                 )}
 
                 <div className="question-list">
