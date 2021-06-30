@@ -1,7 +1,6 @@
 #page-auth {
     display: flex;
     align-items: stretch;
-    height: 100vh;
 
     &.dark {
         background: #333;
@@ -32,22 +31,22 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 120px 80px;
+        padding: 7.5rem 5rem;
 
         img {
-            max-width: 320px;
+            max-width: 20rem;
         }
 
         strong {
-            font: 700 36px "Poppins", sans-serif;
-            line-height: 42px;
-            margin-top: 16px;
+            font: 700 2.25rem "Poppins", sans-serif;
+            line-height: 2.525rem;
+            margin-top: 1rem;
         }
 
         p {
-            font-size: 24px;
-            line-height: 32px;
-            margin-top: 16px;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-top: 1rem;
             color: #f8f8f8;
         }
 
@@ -56,32 +55,22 @@
 
     main {
         flex: 8;
-        padding: 0 32px;
+        padding: 0 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
 
         .toggle-theme {
-            width: 125px;
-            max-width: 320px;
-            height: 40px;
-            border: 0;
-            border-radius: 8px;
-            color: #fff;
-            background-color: #999;
             position: absolute;
-            top: 5px;
-            font-weight: 500;
-            cursor: pointer;
+            top: 0.875rem;
         }
-        
     }
 
     .main-content {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 20rem;
         align-items: stretch;
         text-align: center;
 
@@ -90,22 +79,22 @@
         }
 
         h2 {
-            font-size: 24px;
-            margin: 64px 0 24px;
+            font-size: 1.5rem;
+            margin: 4rem 0 1.5rem;
             font-family: 'Poppins', sans-serif;
         }
 
         form {
             input {
-                height: 50px;
+                height: 3.125rem;
                 border-radius: 8px;
-                padding: 0 16px;
+                padding: 0 1rem;
                 background: #fff;
                 border: 1px solid #a8a8b3;
             }
 
             button {
-                margin-top: 16px;
+                margin-top: 1rem;
             }
 
             button, input {
@@ -114,9 +103,9 @@
         }
 
         p {
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #737380;
-            margin-top: 16px;
+            margin-top: 1rem;
 
             a {
                 color: #e559f9;
@@ -125,8 +114,8 @@
     }
 
     .create-room {
-        margin-top: 25px;
-        height: 50px;
+        margin-top: 1.5rem;
+        height: 3.125rem;
         border-radius: 8px;
         font-weight: 500;
         background: #ea4335;
@@ -139,7 +128,7 @@
         transition: filter 0.2s;
 
         img {
-            margin-right: 8px;
+            margin-right: 0.5rem;
         }
 
         &:hover {
@@ -158,9 +147,9 @@
     }
 
     .separator {
-        font-size: 14px;
+        font-size: 0.875rem;
         color: #a8a8b3;
-        margin: 32px 0;
+        margin: 2rem 0;
         display: flex;
         align-items: center;
 
@@ -169,7 +158,7 @@
             flex: 1;
             height: 1px;
             background: #a8a8b3;
-            margin-right: 16px;
+            margin-right: 1rem;
         }
 
         &::after {
@@ -177,7 +166,71 @@
             flex: 1;
             height: 1px;
             background: #a8a8b3;
-            margin-left: 16px;
+            margin-left: 1rem;
         }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #page-auth {
+        display: flex;
+        flex-direction: column;
+
+        aside {
+            flex: 8;
+        }
+        main {
+            flex: 7;
+            padding: 0 2rem 1.5rem 2rem;
+
+            .toggle-theme {
+                display: none;
+            }
+        }
+
+        .main-content {
+            align-items: center;
+
+            button {
+                width: 100%;
+            }
+
+            >img {
+                margin-top: 1rem;
+            }
+
+            h2 {
+                font-size: 1rem;
+                margin: 2rem 0 1.5rem;
+            }
+
+            form {
+                width: 100%;
+            }
+        }
+
+        aside strong {
+            font: 700 1.5rem "Poppins", sans-serif;
+        }
+
+        aside p {
+            font-size: 1.125rem;
+            line-height: 2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    #page-auth {
+
+        main {
+            padding: 0.875rem;
+
+            .toggle-theme {
+                position: absolute;
+                top: 0.875rem;
+            }
+        }
+
     }
 }

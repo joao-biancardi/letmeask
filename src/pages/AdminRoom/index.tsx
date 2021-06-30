@@ -23,6 +23,7 @@ import { useState } from 'react';
 
 import './styles.scss';
 import { useAuth } from '../../hooks/useAuth';
+import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 
 type RoomParams = {
     id: string;
@@ -81,6 +82,7 @@ export function AdminRoom() {
                     <div>
                         <RoomCode code={roomId} />
                         <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
+                        <ButtonDarkMode />
                     </div>
                 </div>
             </header>

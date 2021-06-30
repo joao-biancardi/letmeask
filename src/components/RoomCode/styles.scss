@@ -26,3 +26,9 @@
         font-weight: 500;
     }
 }
+
+@media screen and (max-width: 425px) {
+    .room-code {
+        margin-top: 15px;
+    }
+}

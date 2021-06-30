@@ -6,6 +6,7 @@ import logoImg from '../../assets/images/logo.svg';
 import logoWhite from '../../assets/images/logoWhite.svg';
 
 import { Button } from '../../components/Button';
+import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../hooks/useTheme';
 import { database } from '../../services/firebase';
@@ -46,6 +47,7 @@ export function NewRoom() {
             </aside>
 
             <main>
+                <ButtonDarkMode />
                 <div className="main-content">
                     {theme === 'light' ? (
                         <img src={logoImg} alt="Letmeask" />

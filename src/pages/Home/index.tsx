@@ -10,6 +10,7 @@ import googleIconImg from '../../assets/images/google-icon.svg';
 import githubIconImg from '../../assets/images/github.svg';
 
 import { Button } from '../../components/Button';
+import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 import { useAuth } from '../../hooks/useAuth';
 import { notify } from '../../utils/notify'
 
@@ -17,11 +18,12 @@ import { useTheme } from '../../hooks/useTheme';
 
 import './styles.scss';
 
+
 export function Home() {
     const history = useHistory();
     const { user, signInWithGoogle } = useAuth();
-    const { theme, toggleTheme } = useTheme();
-    const { signInWithGithub } = useAuth();
+    const { theme } = useTheme();
+    // const { signInWithGithub } = useAuth();
     const [roomCode, setRoomCode] = useState('');
 
     // async function handleCreateRoomGithub() {
@@ -77,7 +79,7 @@ export function Home() {
             </aside>
 
             <main>
-                <button className="toggle-theme" onClick={toggleTheme}>{theme === 'light' ? 'DarkTheme' : 'LightTheme'}</button>
+                <ButtonDarkMode />  
                 <div className="main-content">
                     {theme === 'light' ? (
                         <img src={logoImg} alt="Letmeask" />

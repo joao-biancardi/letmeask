@@ -8,6 +8,7 @@ import logoWhite from '../../assets/images/logoWhite.svg';
 
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
+import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { notify } from '../../utils/notify'
@@ -89,6 +90,7 @@ export function Room() {
                         <img src={logoWhite} alt="Letmeask" />
                     )}
                     <RoomCode code={roomId} />
+                    <ButtonDarkMode />
                     {/* <Button onClick={handleLogOut}>Logout</Button> */}
                 </div>
             </header>
