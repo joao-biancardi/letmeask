@@ -12,6 +12,7 @@ import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { notify } from '../../utils/notify'
+// import { PageNotFound } from '../PageNotFound';
 
 import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
@@ -19,18 +20,19 @@ import { useTheme } from '../../hooks/useTheme';
 
 import '../AdminRoom/styles.scss';
 
+
 type RoomParams = {
     id: string;
 }
 
 export function Room() {
     // const history = useHistory();
-    const { theme } = useTheme()
-    const { user, signInWithGoogle, signOut } = useAuth();
+    const { theme } = useTheme();
+    const { user, signInWithGoogle } = useAuth();
     const params = useParams<RoomParams>();
     const [newQuestion, setNewQuestion] = useState('');
     const roomId = params.id;
-    const { title, questions } = useRoom(roomId)
+    const { title, questions } = useRoom(roomId);
 
     async function handleLogin() {
         if (user) return;

@@ -35,7 +35,7 @@ export function NewRoom() {
         })
 
         notify('success', 'successfully created room!')
-        history.push(`/rooms/${firebaseRoom.key}`)
+        history.push(`/admin/rooms/${firebaseRoom.key}`)
     }
 
     return (

@@ -28,7 +28,6 @@ export function ThemeContextProvider(props: ThemeContextProviderProps) {
 
     function toggleTheme() {
         setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
-        console.log(currentTheme)
         if (currentTheme === 'light') {
             toast('Hello Darkness!',
                 {

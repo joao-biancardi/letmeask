@@ -22,7 +22,7 @@ import { notify } from '../../utils/notify';
 import { useState } from 'react';
 
 import './styles.scss';
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
 import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 
 type RoomParams = {
@@ -30,14 +30,19 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-    const { user } = useAuth();
+    // const { user } = useAuth();
     const { theme } = useTheme();
     const history = useHistory()
     const params = useParams<RoomParams>();
     const roomId = params.id;
     const [questionIdModalOpen, setQuestionIdModalOpen] = useState<string | undefined>()
 
-    const { title, questions } = useRoom(roomId);
+    const { title, questions, checkIsAdmin } = useRoom(roomId);
+    
+    // if (!checkIsAdmin) {
+    //     alert('Você não é adminstrador dessa pagina.')
+    //     return history.push('/');
+    // }
 
     async function handleEndRoom() {
         notify('success', 'room successfully closed!')
@@ -60,7 +65,6 @@ export function AdminRoom() {
         await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
             isAnswered: true,
         });
-
     }
 
     async function handleHighlightQuestion(questionId: string) {

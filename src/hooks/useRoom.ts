@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useHistory } from "react-router-dom";
 import { database } from "../services/firebase";
 import { useAuth } from "./useAuth";
 
@@ -31,14 +31,29 @@ type QuestionType = {
 
 export function useRoom(roomId: string) {
     const { user } = useAuth();
+    const history = useHistory();
     const [questions, setQuestions] = useState<QuestionType[]>([])
     const [title, setTitle] = useState('');
+    const [checkIsAdmin, setCheckIsAdmin] = useState(false)
 
     useEffect(() => {
         const roomRef = database.ref(`rooms/${roomId}`);
 
+        roomRef.get().then(room => {
+            if (!room.exists()) {
+                alert('Essa sala não existe ou foi excluída')
+                return history.push('/');
+            }
+        });
+
         roomRef.on('value', room => {
             const databaseRoom = room.val();
+
+            if (databaseRoom?.endedAt) {
+                alert('Essa sala foi encerrada pelo administrador!!')
+                return history.push('/');
+            }
+
             const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
 
             const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
@@ -53,6 +68,7 @@ export function useRoom(roomId: string) {
                 }
             })
 
+            setCheckIsAdmin(databaseRoom?.authorId === user?.id ? true : false)
             setTitle(databaseRoom.title);
             setQuestions(parsedQuestions);
         })
@@ -60,7 +76,7 @@ export function useRoom(roomId: string) {
         return () => {
             roomRef.off('value');
         }
-    }, [roomId, user?.id]);
+    }, [roomId, user?.id, checkIsAdmin]);
 
-    return { questions, title }
+    return { questions, title, checkIsAdmin }
 }
