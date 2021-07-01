@@ -19,6 +19,7 @@ import { useRoom } from '../../hooks/useRoom';
 import { useTheme } from '../../hooks/useTheme';
 
 import '../AdminRoom/styles.scss';
+import { Helmet } from 'react-helmet';
 
 
 type RoomParams = {
@@ -81,9 +82,11 @@ export function Room() {
         }
     }
     
-
     return (
         <div id="page-room" className={theme}>
+            <Helmet>
+                <title>Letmeask | Room </title>
+            </Helmet>
             <header>
                 <div className="content">
                     {theme === 'light' ? (

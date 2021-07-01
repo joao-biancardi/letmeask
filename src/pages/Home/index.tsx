@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
+import { Helmet } from "react-helmet";
 
 import { database } from '../../services/firebase';
 
@@ -72,6 +73,9 @@ export function Home() {
 
     return (
         <div id="page-auth" className={theme}>
+            <Helmet>
+                <title>Letmeask | Home </title>
+            </Helmet>
             <aside>
                 <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
                 <strong>Crie salas de Q&amp;A ao-vivo</strong>

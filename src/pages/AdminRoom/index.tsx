@@ -1,6 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom'
-import { Fragment } from 'react';
-
+import { Fragment, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Modal from 'react-modal';
 
 import emptyImg from '../../assets/images/empty-questions.svg';
@@ -13,17 +13,15 @@ import answerImg from '../../assets/images/answer.svg';
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 import { RoomCode } from '../../components/RoomCode';
+import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 // import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 import { useTheme } from '../../hooks/useTheme';
 import { database } from '../../services/firebase';
 import { notify } from '../../utils/notify';
 
-import { useState } from 'react';
-
 import './styles.scss';
 // import { useAuth } from '../../hooks/useAuth';
-import { ButtonDarkMode } from '../../components/ButtonDarkMode';
 
 type RoomParams = {
     id: string;
@@ -76,6 +74,9 @@ export function AdminRoom() {
 
     return (
         <div id="page-room" className={theme}>
+            <Helmet>
+                <title>Letmeask | AdminRoom </title>
+            </Helmet>
             <header>
                 <div className="content">
                     {theme === 'light' ? (
